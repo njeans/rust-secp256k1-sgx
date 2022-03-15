@@ -51,7 +51,7 @@ static void secp256k1_ecmult_gen(const secp256k1_ecmult_gen_context *ctx, secp25
     secp256k1_ge_storage adds;
     secp256k1_scalar gnb;
     int i, j, n_i;
-
+    
     memset(&adds, 0, sizeof(adds));
     *r = ctx->initial;
     /* Blind scalar/point multiplication by computing (n-b)G + bG instead of nG. */
@@ -70,7 +70,7 @@ static void secp256k1_ecmult_gen(const secp256k1_ecmult_gen_context *ctx, secp25
              *    by Dag Arne Osvik, Adi Shamir, and Eran Tromer
              *    (https://www.tau.ac.il/~tromer/papers/cache.pdf)
              */
-            secp256k1_ge_storage_cmov(&adds, &secp256k1_ecmult_gen_prec_table[i][j], j == n_i); //nerla
+            secp256k1_ge_storage_cmov(&adds, &secp256k1_ecmult_gen_prec_table[i][j], j == n_i);
         }
         secp256k1_ge_from_storage(&add, &adds);
         secp256k1_gej_add_ge(r, r, &add);
